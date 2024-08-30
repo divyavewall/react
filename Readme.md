@@ -103,3 +103,7 @@ function App() {
 }
 export default App
 ```
+
+## Virtual Dom, fiber and reconcillation
+
+Article : [react - fiber](#https://github.com/acdlite/react-fiber-architecture)
