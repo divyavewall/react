@@ -21,6 +21,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 Best Practices to follow:
 - In vite react we can only create jsx file
-- compinent name should start with capital letter
+- component name should start with capital letter
 - in simple react we can create js files and jsx files too but component name should start with capital letter only 
 - in app.jsx all the components should be wrapped inside one tag means we can return only one tag so we wrap everyrhing inside div on in fragments
