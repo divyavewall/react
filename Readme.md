@@ -24,3 +24,93 @@ Best Practices to follow:
 - compinent name should start with capital letter
 - in simple react we can create js files and jsx files too but component name should start with capital letter only 
 - in app.jsx all the components should be wrapped inside one tag means we can return only one tag so we wrap everyrhing inside div on in fragments
+
+## Imprtance of hooks
+```
+import './App.css'
+
+function App() {
+  let counter = 15
+
+  const incrementCount = () => {
+    counter = counter + 1
+    console.log('increment count : ', counter)
+  }
+
+  const decrementCount = () => {
+    counter = counter -1
+    console.log('Decrement count : ', counter)
+  }
+
+  return (
+    <>
+      <h2>COUNTER - increments and decrements your count value</h2>
+      <h3>Count : {counter}</h3>
+      <button
+        onClick = {incrementCount}
+      > 
+        Increment Count
+      </button>
+      <button
+        onClick = {decrementCount}
+      >
+        Decrement Count</button>
+    </>
+  )
+}
+
+export default App
+```
+In this code we have a amajor problem everything works fine like icrement count increments the value and decrement count 
+decrements the value but it does not reflec on ui, means on our ui count remains same
+
+** This is problem of UI updation **
+
+- React reacts on the updation of variable 
+- When we are updating the variable anything that will change in UI handled by the react which handles ui updation using hooks 
+- In this counter project we will use useState hook.
+- useState - this hook is responsible for state change and this change has been propagated in our DOM. 
+
+** Solution of this problem **
+```
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  // let counter = 15
+  let [ counter, setCounter ] = useState(10)
+
+  const incrementCount = () => {
+    // counter = counter + 1
+    setCounter( counter + 1 )
+    console.log('increment count : ', counter)
+  }
+
+  const decrementCount = () => {
+    // counter = counter -1
+    if(counter > 0){
+      setCounter(counter - 1)
+    }
+    console.log('Decrement count : ', counter)
+  }
+
+  return (
+    <>
+      <h2>COUNTER - increments and decrements your count value</h2>
+      <h3>Count : {counter}</h3>
+      <button
+        onClick = {incrementCount}
+      > 
+        Increment Count
+      </button>
+      <button
+        onClick = {decrementCount}
+      >
+        Decrement Count</button>
+    </>
+  )
+}
+
+export default App
+```
+
