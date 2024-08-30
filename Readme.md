@@ -59,14 +59,14 @@ export default App
 In this code we have a amajor problem everything works fine like icrement count increments the value and decrement count 
 decrements the value but it does not reflec on ui, means on our ui count remains same
 
-** This is problem of UI updation **
+**This is problem of UI updation**
 
 - React reacts on the updation of variable 
 - When we are updating the variable anything that will change in UI handled by the react which handles ui updation using hooks 
 - In this counter project we will use useState hook.
 - useState - this hook is responsible for state change and this change has been propagated in our DOM. 
 
-** Solution of this problem **
+**Solution of this problem**
 ```
 import { useState } from 'react'
 import './App.css'
