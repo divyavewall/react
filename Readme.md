@@ -1,4 +1,4 @@
-## Understand the react flow and structure 
+## 1. Understand the react flow and structure 
 In index.httml, we have only div whose id is root 
 In entry point we have:
 ```
@@ -25,7 +25,7 @@ Best Practices to follow:
 - in simple react we can create js files and jsx files too but component name should start with capital letter only 
 - in app.jsx all the components should be wrapped inside one tag means we can return only one tag so we wrap everyrhing inside div on in fragments
 
-## Importance of hooks
+## 2. Importance of hooks
 ```
 import './App.css'
 function App() {
@@ -59,14 +59,14 @@ export default App
 In this code we have a amajor problem everything works fine like icrement count increments the value and decrement count 
 decrements the value but it does not reflec on ui, means on our ui count remains same
 
-** This is problem of UI updation **
+**This is problem of UI updation**
 
 - React reacts on the updation of variable 
 - When we are updating the variable anything that will change in UI handled by the react which handles ui updation using hooks 
 - In this counter project we will use useState hook.
 - useState - this hook is responsible for state change and this change has been propagated in our DOM. 
 
-** Solution of this problem **
+**Solution of this problem**
 ```
 import { useState } from 'react'
 import './App.css'
@@ -103,7 +103,24 @@ function App() {
 }
 export default App
 ```
+## 3. Virtual DOM, Fiber and Reconcilliation
+Goal of react fiber is to increase its suitability for areas like animation, layout and gestures. Its headline feature is incremental rendering- the ability to split rendering work into chunks and spread it out over multiple frames.
 
-## Virtual Dom, fiber and reconcillation
+**Key features of react fibre :**
+- ability to pause
+- abort
+- reuse work as new updates comes in
+- ability to assign priority to different types of updates
 
-Article : [react - fiber](#https://github.com/acdlite/react-fiber-architecture)
+**Reconcilliation**
+The algorithm react uses to diff one tree with another to determine which parts need to be changed. It is the algorithm behind what is popularly understood as ***VirtualDOM***.
+A high level description goes something like this - when you render a react application, a tree of nodes that describes the app is generated and saved in memory. This tree is then flushed to the rendering enviornment (example - in the case of browser application, it's translated to a set of DOM operations), When the app is updated usually via setState a new tree is generated. The new tree is diffed with the previous tree to compute which operations are needed to update the rendered app.
+
+***Although fiber is a ground up rewrite of the reconciler, the high level algo described in the react docs will be largely the same. the key points are:***
+- Different component types are assumed to generate substantially different trees. React will not attempt to diff them, but rather replace the old tree completely.
+- Diffing of lists is performed using keys. keys should be 'stable, predictable and unique'.
+
+**Reconcilliation versus rendering**
+The DOM is just one of the rendering enviornments, react can render to the the other major targets being native ios and android views via React native.
+The reason it can support so many targets is because react is designed so that recioncilliation and rendering are separate phases. the reconciler does the work of computing which parts of a tree have changed the renderer then uses that information to actually update the rendered app. 
+This separation means the React DOM and React Native can use their own renderers while sharing the same reconciler provided by react core.
