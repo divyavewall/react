@@ -124,4 +124,56 @@ A high level description goes something like this - when you render a react appl
 The DOM is just one of the rendering enviornments, react can render to the the other major targets being native ios and android views via React native.
 The reason it can support so many targets is because react is designed so that recioncilliation and rendering are separate phases. the reconciler does the work of computing which parts of a tree have changed the renderer then uses that information to actually update the rendered app. 
 
+## 4. Interview question on Counter
+```
+  function App(){
+    const [counter, setCounter] = useState(15)
+    const incrementValue = () => {
+      setCounter(counter+1)
+      setCounter(counter+1)
+      setCounter(counter+1)
+      setCounter(counter+1)
+    }
+    const decrementValue = () => {
+      setCounter(counter-1)
+    }
 
+    return(
+      <>
+        <h1> Count : {counter} </h1>
+        <button onClick={incremetValue}> + </button>
+        <button onClick={decrementValue}> - </button> 
+      </>
+    )
+  }
+```
+**here when we increment value what will we get in count 16 or 19 ?**
+we will get 16 because useState sends all the updates in UI in batches which are more controllable after the implementation of react-fiber, here each of this setCounter function doing same thing hence it will considered in single batch.
+instead of counter = counter+1 we got last updated state using 
+
+setCounter(prevCounter => prevCounter+1)
+
+When it comes through callback after then after completing again it's called and changes propagated by doing these we can update 15 to 19 on a single click.
+
+```
+  function App(){
+    const [counter, setCounter] = useState(15)
+    const incrementValue = () => {
+      setCounter(prevCounter = prevCounter+1)
+      setCounter(prevCounter = prevCounter+1)
+      setCounter(prevCounter = prevCounter+1)
+      setCounter(prevCounter = prevCounter+1)
+    }
+    const decrementValue = () => {
+      setCounter(counter-1)
+    }
+
+    return(
+      <>
+        <h1> Count : {counter} </h1>
+        <button onClick={incremetValue}> + </button>
+        <button onClick={decrementValue}> - </button> 
+      </>
+    )
+  }
+```
