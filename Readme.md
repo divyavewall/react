@@ -123,11 +123,5 @@ A high level description goes something like this - when you render a react appl
 **Reconcilliation versus rendering**
 The DOM is just one of the rendering enviornments, react can render to the the other major targets being native ios and android views via React native.
 The reason it can support so many targets is because react is designed so that recioncilliation and rendering are separate phases. the reconciler does the work of computing which parts of a tree have changed the renderer then uses that information to actually update the rendered app. 
-<<<<<<< HEAD
-This separation means the React DOM and React Native can use their own renderers while sharing the same reconciler provided by react core.
-=======
-This separation means the React DOM and React Native can use their own renderers while sharing the same reconciler provided by react core.
 
 
-
->>>>>>> origin/main
